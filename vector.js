@@ -3,7 +3,7 @@ function Vector(a=0,b=0,c=0) {
     this.y = b;
     this.z = c;
 
-    this.abs = () => sqrt(this.x**2 + this.y**2 + this.z**2);
+    this.abs = () => Math.sqrt(this.x**2 + this.y**2 + this.z**2);
 
     this.show = (start= new Vector(), color= [255,0,0])  => {
         let start2d = convert2d(start);
@@ -16,19 +16,37 @@ function Vector(a=0,b=0,c=0) {
     }
 }
 
-function Plane(a=0,b=0,c=0,d=0) {
-    this.x = a;
-    this.y = b;
-    this.z = c;
+function Plane(n = new Vector(), d=0, color = [0,0,255]) {
+    this.x = n.x;
+    this.y = n.y;
+    this.z = n.z;
     this.d = d;
 
+    this.rootPoint = () => {
+        let Sx = new Vector(this.d/this.x,0,0);
+        let Sy = new Vector(0,this.d/this.y,0);
+        let Sz = new Vector(0,0,this.d/this.z);
+
+        return {
+            Sx: Sx,
+            Sy: Sy,
+            Sz: Sz
+        }
+    }
+
     this.show = () => {
-        let x = this.d/this.x;
-        let y = this.d/this.y;
-        let z = this.d/this.z;
+        let Sx = convert2d(new Vector(this.d/this.x,0,0));
+        let Sy = convert2d(new Vector(0,this.d/this.y,0));
+        let Sz = convert2d(new Vector(0,0,this.d/this.z));
+        
+        strokeWeight(2)
+        stroke(color)
+        line(Sx.x, Sx.y, Sy.x, Sy.y)
+        line(Sy.x, Sy.y, Sz.x, Sz.y)
+        line(Sz.x, Sz.y, Sx.x, Sx.y)
+        return this;
     }
 }
-
 
 let randomVector = (a=1) => {
     let x = (Math.random()-0.5)*a*2
@@ -47,12 +65,12 @@ let vectorProduct = (a,b) => {
 let scalarProduct = (a,b) => a.x*b.x + a.y*b.y + a.z*b.z;
 
 let convert2d = vector => {
-    let x = vector.x*sqrt(2)/2;
-        x = -sqrt(x**2/2)
+    let x = vector.x*Math.sqrt(2)/2;
+        x = -Math.sqrt(x**2/2)
         x += vector.y;
         x *= scl
-    let y = vector.x*sqrt(2)/2;
-        y = sqrt(y**2/2)
+    let y = vector.x*Math.sqrt(2)/2;
+        y = Math.sqrt(y**2/2)
         y -= vector.z;
         y *= scl
     return {
