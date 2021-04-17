@@ -15,10 +15,19 @@ function Vector(a=0,b=0,c=0) {
             x *= scl
         let y = this.x*sqrt(2)/2 - this.z;
             y *= scl
+
+        strokeWeight(2)
         stroke(color)
         line(startX,startY, x+startX,y+startY)
         return this;
     }
+}
+
+let randomVector = (a=1) => {
+    let x = (Math.random()-0.5)*a*2
+    let y = (Math.random()-0.5)*a*2
+    let z = (Math.random()-0.5)*a*2
+    return new Vector(x,y,z);
 }
 
 let vectorProduct = (a,b) => {
