@@ -17,7 +17,7 @@ function setup() {
   canvas.mouseWheel(zoom);
   origin = new Vector()
 
-  a = new Vector(8,0,0)
+  a = new Vector(1, 0, 0)
   n = randomVector(8)
   e = new Plane(n, 8)
 }
@@ -52,10 +52,22 @@ let zoom = event => {
 }
 
 let drawScale = () => {
+  let inc = 1;
   stroke(0)
-  for (let i = 1; i < 10; i++) {
-    text(i, i * scl, 12)
-    text(i, -10, -i*scl)
-    text(i, -Math.sqrt(2*i**2)/2*scl, Math.sqrt(2*i**2)/2*scl)
+
+  if (scl < 40) {
+    inc = 10
+  }
+  if (scl < 2) {
+    inc = 100
+  }
+
+  for (let i = 0; i < l / scl; i += inc) {
+    if (i != 0) {
+      text(i, i * scl, 20)
+      text(i, -20, -i * scl)
+      let xText = convert2d(new Vector(i,0,0))
+      text(i, xText.x+10, xText.y+10)
+    }
   }
 }
