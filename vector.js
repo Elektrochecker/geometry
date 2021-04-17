@@ -65,11 +65,11 @@ let vectorProduct = (a,b) => {
 let scalarProduct = (a,b) => a.x*b.x + a.y*b.y + a.z*b.z;
 
 let convert2d = vector => {
-    let x = vector.x*Math.sqrt(2)/2;
+    let x = Math.sqrt(vector.x**2);
         x = -Math.sqrt(x**2/2)
         x += vector.y;
         x *= scl
-    let y = vector.x*Math.sqrt(2)/2;
+    let y = Math.sqrt(vector.x**2);
         y = Math.sqrt(y**2/2)
         y -= vector.z;
         y *= scl
