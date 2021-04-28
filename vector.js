@@ -16,7 +16,7 @@ function Vector(a=0,b=0,c=0) {
     }
 }
 
-function Plane(n = new Vector(), d=0, color = [0,0,255]) {
+function Plane(n = new Vector(), d = 0, color = [0,0,255]) {
     this.x = n.x;
     this.y = n.y;
     this.z = n.z;
@@ -48,10 +48,15 @@ function Plane(n = new Vector(), d=0, color = [0,0,255]) {
     }
 }
 
-let randomVector = (a=1) => {
+let randomVector = (a=1, whole=true) => {
     let x = (Math.random()-0.5)*a*2
     let y = (Math.random()-0.5)*a*2
     let z = (Math.random()-0.5)*a*2
+    if (whole) {
+        x = Math.floor(x)
+        y = Math.floor(y)
+        z = Math.floor(z)
+    }
     return new Vector(x,y,z);
 }
 
@@ -65,12 +70,13 @@ let vectorProduct = (a,b) => {
 let scalarProduct = (a,b) => a.x*b.x + a.y*b.y + a.z*b.z;
 
 let convert2d = vector => {
+    let positiveX = vector.x >= 0 ? 1 : -1
     let x = vector.x*Math.sqrt(2)/2;
-        x = -Math.sqrt(x**2/2)
+        x = -Math.sqrt(x**2/2) * positiveX
         x += vector.y;
         x *= scl
     let y = vector.x*Math.sqrt(2)/2;
-        y = Math.sqrt(y**2/2)
+        y = Math.sqrt(y**2/2) * positiveX
         y -= vector.z;
         y *= scl
     return {
