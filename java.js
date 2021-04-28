@@ -1,6 +1,6 @@
 let canvas;
 let l = 400;
-let scl = 20;
+let scl = 100;
 let axisLength;
 let origin;
 
@@ -17,7 +17,6 @@ function setup() {
   canvas.mouseWheel(zoom);
   origin = new Vector()
 
-  a = new Vector(1, 0, 0)
   n = randomVector(8)
   e = new Plane(n, 8)
 }
@@ -33,14 +32,13 @@ function draw() {
   stroke(160)
   line(0, 0, l + axisLength, -l - axisLength) //x axis
   line(0, 0, 0, axisLength) //y axis
-  line(0, 0, -axisLength, 0)
-  drawScale() //z axis
+  line(0, 0, -axisLength, 0) //z axis
+  drawScale()
 
-  a.show()
-  // e.show()
-  // n.show(e.rootPoint().Sx)
-  //   .show(e.rootPoint().Sy)
-  //   .show(e.rootPoint().Sz)
+  e.show()
+  n.show(e.rootPoint().Sx)
+    .show(e.rootPoint().Sy)
+    .show(e.rootPoint().Sz)
 }
 
 let zoom = event => {
@@ -58,7 +56,7 @@ let drawScale = () => {
   if (scl < 40) {
     inc = 10
   }
-  if (scl < 2) {
+  if (scl < 6) {
     inc = 100
   }
 
@@ -66,8 +64,8 @@ let drawScale = () => {
     if (i != 0) {
       text(i, i * scl, 20)
       text(i, -20, -i * scl)
-      let xText = convert2d(new Vector(i,0,0))
-      text(i, xText.x+10, xText.y+10)
+      let xText = convert2d(new Vector(i, 0, 0))
+      text(i, xText.x + 10, xText.y + 10)
     }
   }
 }
