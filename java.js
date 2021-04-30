@@ -4,21 +4,19 @@ let scl = 100;
 let axisLength;
 let origin;
 
-let a, n, e;
+let customVectors = [];
 
 function setup() {
   if (windowWidth < windowHeight) {
-    l = windowWidth - 20;
+    l = windowWidth - 40;
   } else {
-    l = windowHeight - 20;
+    l = windowHeight - 40;
   }
   axisLength = 2 * l - Math.sqrt(2 * l ** 2);
   canvas = createCanvas(l, l);
+  canvas.parent("coordinateWindow")
   canvas.mouseWheel(zoom);
   origin = new Vector()
-
-  n = randomVector(8)
-  e = new Plane(n, 8)
 }
 
 function draw() {
@@ -34,11 +32,7 @@ function draw() {
   line(0, 0, 0, axisLength) //y axis
   line(0, 0, -axisLength, 0) //z axis
   drawScale()
-
-  e.show()
-  n.show(e.rootPoint().Sx)
-    .show(e.rootPoint().Sy)
-    .show(e.rootPoint().Sz)
+  render()
 }
 
 let zoom = event => {

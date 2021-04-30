@@ -2,19 +2,24 @@
 <title>x</title>
 <!-- <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico"> -->
 
-<head></head>
-
-<body style="background-color:rgb(66, 66, 66);">
+<head>
+	<link href="style.css" rel="stylesheet" type="text/css">
 	<script src="vector.js"></script>
 	<script src="./libraries/p5.js"></script>
 	<script src="./libraries/p5.dom.js"></script>
-	<div>
-		<script src="java.js"></script>
+	<script src="java.js"></script>
+	<script src="render.js"></script>
+	<script defer src="dom.js"></script>
+</head>
+
+<body>
+	<div id = coordinateWindow>
 	</div>
-	<!-- <div id = "inputDivs">
+	<div id = "inputDiv">
 		<label for="vectorInput">new Vector:</label>
-		<input type="text" id="vectorInput" name="vector"><br><br>
-	</div> -->
+		<input type="text" id="vectorInput" name="vector" value="0,0,0">
+		<button type="button" id="vectorInputButton">yes</button>
+	</div>
 </body>
 
 </html>
