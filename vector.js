@@ -39,13 +39,13 @@ class Plane {
         };
     };
 
-    show = () => {
+    show = (color = this.color) => {
         let Sx = convert2d(new Vector(this.d / this.x, 0, 0));
         let Sy = convert2d(new Vector(0, this.d / this.y, 0));
         let Sz = convert2d(new Vector(0, 0, this.d / this.z));
 
         strokeWeight(2);
-        stroke(this.color);
+        stroke(color);
         line(Sx.x, Sx.y, Sy.x, Sy.y);
         line(Sy.x, Sy.y, Sz.x, Sz.y);
         line(Sz.x, Sz.y, Sx.x, Sx.y);

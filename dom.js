@@ -3,11 +3,25 @@ document.getElementById("vectorInputButton").onclick = () => {
     input = eval(`[${input.value}]`)
 
     if (input.length != 3) {
-        console.error("Invalid Vector Input")
+        console.error("Invalid vector input")
         return false
     } else {
-        v = new Vector(input[0], input[1], input[2])
+        let v = new Vector(input[0], input[1], input[2])
         customVectors.push(v)
         return v;
+    }
+}
+
+document.getElementById("planeInputButton").onclick = () => {
+    let input = document.getElementById("planeInput")
+    input = eval(`[${input.value}]`)
+
+    if (input.length != 4) {
+        console.error("Invalid plane input")
+        return false
+    } else {
+        let e = new Plane(new Vector(input[0], input[1], input[2]), input[3])
+        customPlanes.push(e)
+        return e;
     }
 }

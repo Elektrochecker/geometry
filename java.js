@@ -5,12 +5,13 @@ let axisLength;
 let origin;
 
 let customVectors = [];
+let customPlanes = [];
 
 function setup() {
   if (windowWidth < windowHeight) {
-    l = windowWidth - 40;
+    l = windowWidth - 60;
   } else {
-    l = windowHeight - 40;
+    l = windowHeight - 60;
   }
   axisLength = 2 * l - Math.sqrt(2 * l ** 2);
   canvas = createCanvas(l, l);
