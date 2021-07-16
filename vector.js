@@ -89,3 +89,19 @@ let convert2d = vector => {
         y: y
     }
 }
+
+class Point {
+    color = [0,200,0];
+
+    constructor(x, y, z) {
+        this.positionVector = new Vector(x, y, z);
+    }
+
+    show = (radius = 4, color = this.color) => {
+        let position = convert2d(this.positionVector);
+        ellipseMode(CENTER)
+        fill(color)
+        noStroke()
+        circle(position.x, position.y,radius)
+    }
+}

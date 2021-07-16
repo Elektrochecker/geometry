@@ -6,12 +6,13 @@ let origin;
 
 let customVectors = [];
 let customPlanes = [];
+let customPoints = [];
 
 function setup() {
   if (windowWidth < windowHeight) {
-    l = windowWidth - 60;
+    l = windowWidth - 100;
   } else {
-    l = windowHeight - 60;
+    l = windowHeight - 200;
   }
   axisLength = 2 * l - Math.sqrt(2 * l ** 2);
   canvas = createCanvas(l, l);
@@ -22,6 +23,7 @@ function setup() {
 
 function draw() {
   background(200)
+  fill(0)
   translate(l - axisLength, axisLength)
   strokeWeight(1)
   stroke(0)

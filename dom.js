@@ -1,3 +1,17 @@
+document.getElementById("pointInputButton").onclick = () => {
+    let input = document.getElementById("pointInput")
+    input = eval(`[${input.value}]`)
+
+    if (input.length != 3) {
+        console.error("Invalid point input")
+        return false
+    } else {
+        let p = new Point(input[0], input[1], input[2])
+        customPoints.push(p)
+        return p;
+    }
+}
+
 document.getElementById("vectorInputButton").onclick = () => {
     let input = document.getElementById("vectorInput")
     input = eval(`[${input.value}]`)
